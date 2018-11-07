@@ -47,7 +47,7 @@
     "cross-spawn": "^6.0.5",
     "dayjs": "^1.7.7",
     "express": "^4.15.3",
-    "helmet": "^3.14.0",
+    "helmet": "^3.15.0",
     "inquirer": "^6.2.0",
     "locale-code": "^2.0.1",
     "lodash.clonedeepwith": "^4.5.0",
