@@ -1,0 +1,25 @@
+{
+  "public": false,
+  "version": 2,
+  "name": "statusfy-website",
+  "alias": [
+    "statusfy-website",
+    "statusfy.bazzite.com"
+  ],
+  "env": {
+    "API_URL": "https://app.bazzite.com/api/v1/",
+    "GA_TRACKING_ID": "UA-122994211-1",
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "API_URL": "https://app.bazzite.com/api/v1/",
+      "GA_TRACKING_ID": "UA-122994211-1",
+      "NODE_ENV": "production",
+      "NPM_CONFIG_PRODUCTION": "false"
+    }
+  },
+  "builds": [
+    { "src": "server/index.js", "use": "@now/node-server" }
+  ]
+}

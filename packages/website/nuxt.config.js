@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { path } from '@statusfy/common'
+const axios = require('axios')
+const { path } = require('@statusfy/common')
 const pkg = require('./package')
 
 const title = 'Statusfy'
@@ -11,7 +11,7 @@ const twitterUserEn = 'BazziteTech'
 const twitterUserEs = 'BazziteEs'
 const apiBaseURL = process.env.API_URL || 'http://127.0.0.1:8000/api/v1/'
 const generateRouteBaseURL =
-  process.env.GENRATE_ROUTES_URL || `${apiBaseURL}blog?tags=statusfy`
+  process.env.GENERATE_ROUTES_URL || `${apiBaseURL}blog?tags=statusfy`
 
 const getPosts = async (lang = 'en') => {
   const posts = await axios.get(generateRouteBaseURL, {
@@ -159,32 +159,6 @@ module.exports = {
       return { x: 0, y: 0 }
     }
   },
-  /*
-   ** Generate Configuration
-   */
-  generate: {
-    subFolders: false,
-    fallback: '404.html',
-    routes: async () => {
-      const generateRoutes = async lang => {
-        const prefix = lang === 'es' ? '/es' : ''
-
-        const postsEn = await getPosts(lang)
-
-        return postsEn.data.results.map(post => {
-          return {
-            route: `${prefix}/blog/${post.slug}`,
-            payload: post
-          }
-        })
-      }
-
-      const routesEn = await generateRoutes('en')
-      const routesEs = await generateRoutes('es')
-
-      return [...routesEn, ...routesEs]
-    }
-  },
   // Modules Configurations
   /*
    ** Axios module configuration
@@ -250,7 +224,7 @@ module.exports = {
     hostname: baseHost,
     cacheTime: 604800, // 7 days
     gzip: true,
-    generate: true,
+    generate: false,
     routes: async () => {
       const websitePages = ['', 'support', 'blog']
       const routesEn = []
